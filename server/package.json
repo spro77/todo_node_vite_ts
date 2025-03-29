@@ -2,10 +2,15 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.ts",
+  "exports": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.ts"
+    "dev": "nodemon -I --exec node --experimental-specifier-resolution=node --loader ts-node/esm ./src/index.ts",
+    "seed": "node --loader ts-node/esm prisma/seed.ts"
+  },
+  "prisma": {
+    "seed": "node --loader ts-node/esm prisma/seed.ts"
   },
   "repository": {
     "type": "git",
@@ -26,6 +31,7 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
+    "@prisma/client": "^6.5.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2"
